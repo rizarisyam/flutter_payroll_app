@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_config/flutter_config.dart';
 import 'package:payroll_app/maps_demo.dart';
 import 'package:payroll_app/view/attendance/attendance.dart';
 import 'package:payroll_app/view/attendance/attendance_list.dart';
@@ -9,7 +10,10 @@ import 'package:payroll_app/view/homepage.dart';
 import 'package:payroll_app/view/inbox/inbox_detail_page.dart';
 import 'package:payroll_app/view/inbox/inbox_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await FlutterConfig.loadEnvVariables();
+
   runApp(const MyApp());
 }
 
