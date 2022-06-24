@@ -116,7 +116,7 @@ class _GoogleMapsDemoState extends State<GoogleMapsDemo> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _getCurrentPosition,
-        tooltip: 'get current location',
+        tooltip: 'get current',
         child: const Icon(Icons.location_city),
       ),
     );
