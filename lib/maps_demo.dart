@@ -2,11 +2,8 @@ import 'dart:async';
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:location/location.dart';
-import 'package:payroll_app/helpers/location_helper.dart';
 
 class GoogleMapsDemo extends StatefulWidget {
   const GoogleMapsDemo({Key? key}) : super(key: key);
@@ -62,7 +59,8 @@ class _GoogleMapsDemoState extends State<GoogleMapsDemo> {
       }
     }
 
-    return await Geolocator.getCurrentPosition();
+    return await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.bestForNavigation);
   }
 
   void _setCircles(LatLng point) {
@@ -77,6 +75,13 @@ class _GoogleMapsDemoState extends State<GoogleMapsDemo> {
         fillColor: Colors.redAccent.withOpacity(0.5),
         strokeWidth: 3,
         strokeColor: Colors.redAccent));
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _getCurrentPosition();
   }
 
   @override
