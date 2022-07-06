@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 
 class AttendancePage extends StatefulWidget {
   const AttendancePage({Key? key}) : super(key: key);
@@ -63,17 +64,18 @@ class _AttendancePageState extends State<AttendancePage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
-                          "09:30",
-                          style: TextStyle(
+                        Text(
+                          DateFormat.Hm().format(DateTime.now()),
+                          style: const TextStyle(
                               color: Color(0XFFFFFFFF),
                               fontWeight: FontWeight.w700,
                               fontSize: 28),
                         ),
                         const SizedBox(height: 10),
-                        const Text(
-                          "Rabu, 18 Mei 2022",
-                          style: TextStyle(
+                        Text(
+                          DateFormat("EEEE, d MMMM yyyy", "id_ID")
+                              .format(DateTime.now()),
+                          style: const TextStyle(
                               color: Color(0XFFFFFFFF),
                               fontWeight: FontWeight.w400,
                               fontSize: 16),

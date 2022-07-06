@@ -8,10 +8,17 @@ class CustomDatePicker extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        height: 300,
-        width: 300,
+        height: 450,
+        width: 320,
         child: Card(
           child: SfDateRangePicker(
+            todayHighlightColor: Colors.blueAccent,
+            headerStyle: const DateRangePickerHeaderStyle(
+                backgroundColor: Color.fromARGB(255, 15, 44, 210),
+                textStyle: TextStyle(color: Colors.white)),
+                headerHeight: 80,
+            view: DateRangePickerView.month,
+            monthFormat: 'MMM',
             showActionButtons: true,
             showNavigationArrow: true,
             onCancel: () {

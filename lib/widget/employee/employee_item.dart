@@ -42,7 +42,7 @@ class EmployeeItem extends StatelessWidget {
               ],
             ),
             Wrap(
-              spacing: 10,
+              spacing: 12,
               children: const [
                 FaIcon(
                   FontAwesomeIcons.whatsappSquare,
@@ -55,7 +55,7 @@ class EmployeeItem extends StatelessWidget {
                   color: Color(0XFF407BFF),
                 ),
                 FaIcon(
-                  FontAwesomeIcons.envelope,
+                  FontAwesomeIcons.solidEnvelope,
                   size: 25,
                   color: Color(0XFF717171),
                 )

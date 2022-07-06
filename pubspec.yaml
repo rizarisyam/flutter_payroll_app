@@ -46,8 +46,13 @@ dependencies:
   google_maps_flutter: ^2.1.8
   geolocator: ^8.2.1
   location: ^4.4.0
+  sizer: ^2.0.15
+  responsive_sizer: ^3.0.8
+  syncfusion_localizations: ^20.2.36
+  flutter_localizations:
+    sdk: flutter
+  shared_preferences_web: ^2.0.4
   flutter_config: ^2.0.0
-  device_preview: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -80,7 +85,12 @@ flutter:
       - assets/svgs/header_login.svg
       - assets/images/bg_header_login.png
       - assets/images/heading_login.png
+      - assets/images/bg_profile.png
       - assets/images/avatar_img.png
+      - assets/images/contact_solid.png
+      - assets/images/home_solid.png
+      - assets/images/message_solid.png
+      - assets/images/user_solid.png
       - assets/svgs/bi_calendar-date-fill.svg
       - assets/svgs/majesticons_note-text.svg
       - assets/svgs/fluent_clock-12-filled.svg

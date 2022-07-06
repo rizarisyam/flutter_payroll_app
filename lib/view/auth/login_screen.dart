@@ -18,8 +18,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
-
     // Clean up the controller when the widget is removed from the
     // widget tree.
     emailTextController.dispose();
@@ -31,6 +29,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
+      extendBodyBehindAppBar: true,
       body: SafeArea(
         child: Column(
           children: [
@@ -66,13 +65,13 @@ class _LoginPageState extends State<LoginPage> {
                 )),
             Flexible(
               child: Container(
-                  decoration: const BoxDecoration(color: Color(0XFFE5E5E5)),
-                  width: double.infinity,
-                  height: double.infinity,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 40),
-                    child: Center(
-                        child: Form(
+                decoration: const BoxDecoration(color: Color(0XFFE5E5E5)),
+                width: double.infinity,
+                height: double.infinity,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
+                  child: Center(
+                    child: Form(
                       key: _formKey,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -80,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                           Container(
                             decoration: BoxDecoration(
                                 color: Colors.white,
-                                borderRadius: BorderRadius.circular(10)),
+                                borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
                               controller: emailTextController,
                               textAlignVertical: TextAlignVertical.center,
@@ -94,8 +93,9 @@ class _LoginPageState extends State<LoginPage> {
                           Container(
                             decoration: BoxDecoration(
                                 color: Colors.white,
-                                borderRadius: BorderRadius.circular(10)),
+                                borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
+                              obscureText: true,
                               controller: passwordTextController,
                               textAlignVertical: TextAlignVertical.center,
                               decoration: const InputDecoration(
@@ -121,8 +121,10 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ],
                       ),
-                    )),
-                  )),
+                    ),
+                  ),
+                ),
+              ),
             ),
           ],
         ),
