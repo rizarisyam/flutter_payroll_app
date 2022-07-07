@@ -18,6 +18,7 @@ class CustomDatePicker extends StatelessWidget {
                 textStyle: TextStyle(color: Colors.white)),
                 headerHeight: 80,
             view: DateRangePickerView.month,
+            selectionRadius: 14,
             monthFormat: 'MMM',
             showActionButtons: true,
             showNavigationArrow: true,
