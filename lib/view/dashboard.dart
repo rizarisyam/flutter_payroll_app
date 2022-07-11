@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:payroll_app/view/submission/attend_submiss.dart';
 import 'package:payroll_app/view/submission/overtime_submiss.dart';
 import 'package:payroll_app/view/submission/paidleave_submission.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -116,7 +117,12 @@ class DashboardPage extends StatelessWidget {
                               ),
                               InkWell(
                                 onTap: () {
-                                  
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const AttendaceSubmiss()),
+                                  );
                                 },
                                 child: const CardItemHeader(
                                   title: "pengajuan",

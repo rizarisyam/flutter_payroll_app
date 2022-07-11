@@ -1,3 +1,4 @@
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 
 class FormIconCustom extends StatelessWidget {
@@ -194,3 +195,45 @@ class _OptionCustomState extends State<OptionCustom> {
     );
   }
 }
+
+class CheckboxCustom extends StatefulWidget {
+  const CheckboxCustom({Key? key,  this.title}) : super(key: key);
+  // final String? subtitle;
+  final String? title;
+
+  @override
+  State<CheckboxCustom> createState() => _CheckboxCustomState();
+}
+
+class _CheckboxCustomState extends State<CheckboxCustom> {
+  bool isChecked = false;
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        children: <Widget>[
+          const SizedBox(height: 10,),
+          CheckboxListTile(
+            contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+            selected: true,
+            title: Text('${widget.title}',style: const TextStyle(fontSize: 14,color: Color.fromARGB(255, 149, 149, 149)),),
+            subtitle: DateTimePicker( 
+              autovalidate: true,
+              timeLabelText: "Jam",
+              type: DateTimePickerType.time,
+            ),
+            checkColor: Colors.white,
+            controlAffinity: ListTileControlAffinity.leading,
+            value: isChecked,
+            onChanged: (bool? value) {
+              setState(() {
+                isChecked = value!;
+              });
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+

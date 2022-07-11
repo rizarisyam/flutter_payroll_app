@@ -4,16 +4,15 @@ import 'package:payroll_app/widget/button_custom.dart';
 import 'package:payroll_app/widget/form_custom.dart';
 import 'package:payroll_app/widget/date-picker.dart';
 import 'package:intl/intl.dart';
-import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-class PaidLeaveSubmiss extends StatefulWidget {
-  const PaidLeaveSubmiss({Key? key}) : super(key: key);
+class AttendaceSubmiss extends StatefulWidget {
+  const AttendaceSubmiss({Key? key}) : super(key: key);
 
   @override
-  State<PaidLeaveSubmiss> createState() => _PaidLeaveSubmissState();
+  State<AttendaceSubmiss> createState() => _AttendaceSubmissState();
 }
 
-class _PaidLeaveSubmissState extends State<PaidLeaveSubmiss> {
+class _AttendaceSubmissState extends State<AttendaceSubmiss> {
   Future showDatetimePicker() {
     return showDialog<Widget>(
         context: context,
@@ -37,7 +36,7 @@ class _PaidLeaveSubmissState extends State<PaidLeaveSubmiss> {
           'assets/images/bg_header_login.png',
           fit: BoxFit.cover,
         ),
-        title: const Text("Ajukan Cuti"),
+        title: const Text("Ajukan Absensi"),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -48,7 +47,7 @@ class _PaidLeaveSubmissState extends State<PaidLeaveSubmiss> {
             bottom: 150,
           ),
           child: SizedBox(
-            // height: 600,
+            // height: 250,
             child: Column(
               children: [
                 Padding(
@@ -72,17 +71,19 @@ class _PaidLeaveSubmissState extends State<PaidLeaveSubmiss> {
                     ),
                   ),
                 ),
-                const OptionCustom(
-                  textHint: "Jenis Cuti",
+                const CheckboxCustom(
+                  title: "Clock In",
                 ),
-                const FormIconCustom(
+                const SizedBox(
+                  height: 10,
+                ),
+                const CheckboxCustom(
+                  title: "Clock Out",
+                ),
+                 const FormIconCustom(
                   label: "Keterangan",
                   icon: Icons.notes_rounded,
                 ),
-                const FormIconCustom(
-                    label: "Delegasikan Personal", icon: Icons.person),
-                const FormIconCustom(
-                    label: "Upload File", icon: Icons.file_upload_outlined),
                 Positioned(
                   right: 0,
                   left: 0,
@@ -94,7 +95,7 @@ class _PaidLeaveSubmissState extends State<PaidLeaveSubmiss> {
                       children: [
                         ButtonProfile(
                           onPressed: () {},
-                          title: "Ajukan Cuti",
+                          title: "Ajukan Absensi",
                           colour: Color.fromARGB(255, 1, 55, 205),
                         ),
                         const SizedBox(

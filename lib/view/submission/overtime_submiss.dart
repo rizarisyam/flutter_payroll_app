@@ -4,7 +4,6 @@ import 'package:payroll_app/widget/button_custom.dart';
 import 'package:payroll_app/widget/form_custom.dart';
 import 'package:payroll_app/widget/date-picker.dart';
 import 'package:intl/intl.dart';
-import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class OvertimeSubmiss extends StatefulWidget {
   const OvertimeSubmiss({Key? key}) : super(key: key);
@@ -73,7 +72,7 @@ class _OvertimeSubmissState extends State<OvertimeSubmiss> {
                   ),
                 ),
                 const FormIconCustom(
-                  label: "Alasan",
+                  label: "Keterangan",
                   icon: Icons.notes_rounded,
                 ),
                 Positioned(
