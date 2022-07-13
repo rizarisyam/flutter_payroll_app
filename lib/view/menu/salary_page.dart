@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:month_picker_dialog/month_picker_dialog.dart';
 import 'package:payroll_app/widget/button_custom.dart';
 import 'package:payroll_app/widget/date-picker.dart';
 import 'package:payroll_app/widget/form_custom.dart';
@@ -29,6 +30,7 @@ class ElementBottomSheet extends StatefulWidget {
 
 class _ElementBottomSheetState extends State<ElementBottomSheet> {
   bool showWidget = false;
+  DateTime? _selected;
   @override
   void initState() {
     super.initState();
@@ -65,7 +67,7 @@ class _ElementBottomSheetState extends State<ElementBottomSheet> {
                   padding: const EdgeInsets.only(
                       left: 15, right: 15, bottom: 15, top: 40),
                   child: InkWell(
-                    onTap: showDatetimePicker,
+                    onTap: () => _onPressed(context: context, locale: 'id'),
                     child: Card(
                       elevation: 0,
                       margin: EdgeInsets.zero,
@@ -200,5 +202,31 @@ class _ElementBottomSheetState extends State<ElementBottomSheet> {
         );
       },
     );
+  }
+
+  Future<void> _onPressed({
+    required BuildContext context,
+    String? locale,
+  }) async {
+    final localeObj = locale != null ? Locale(locale) : null;
+    final selected = await showMonthPicker(
+      context: context,
+      initialDate: _selected ?? DateTime.now().add(new Duration(days: 7)),
+      firstDate: DateTime(2019),
+      lastDate: DateTime(2023),
+      locale: localeObj,
+    );
+    // final selected = await showDatePicker(
+    //   context: context,
+    //   initialDate: _selected ?? DateTime.now(),
+    //   firstDate: DateTime(2019),
+    //   lastDate: DateTime(2022),
+    //   locale: localeObj,
+    // );
+    if (selected != null) {
+      setState(() {
+        _selected = selected;
+      });
+    }
   }
 }

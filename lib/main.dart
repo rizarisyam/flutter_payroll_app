@@ -40,10 +40,10 @@ class MyApp extends StatelessWidget {
         localizationsDelegates: const [
                 GlobalMaterialLocalizations.delegate,
                 GlobalWidgetsLocalizations.delegate,
-                SfGlobalLocalizations.delegate
+                SfGlobalLocalizations.delegate,
               ],
               supportedLocales: const [
-                Locale('id'),
+                Locale('id', 'ID'),
               ],
               locale: const Locale('id'),
         routes: {

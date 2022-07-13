@@ -214,13 +214,16 @@ class _CheckboxCustomState extends State<CheckboxCustom> {
         children: <Widget>[
           const SizedBox(height: 10,),
           CheckboxListTile(
-            contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+            contentPadding: const EdgeInsets.only(left: 8, bottom: 5),
             selected: true,
             title: Text('${widget.title}',style: const TextStyle(fontSize: 14,color: Color.fromARGB(255, 149, 149, 149)),),
-            subtitle: DateTimePicker( 
-              autovalidate: true,
-              timeLabelText: "Jam",
-              type: DateTimePickerType.time,
+            subtitle: Padding(
+              padding: const EdgeInsets.only(right: 20),
+              child: DateTimePicker( 
+                autovalidate: true,
+                timeLabelText: "Jam",
+                type: DateTimePickerType.time,
+              ),
             ),
             checkColor: Colors.white,
             controlAffinity: ListTileControlAffinity.leading,
