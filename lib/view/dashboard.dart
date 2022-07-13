@@ -1,12 +1,50 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:payroll_app/models/auth/current_user.dart';
+import 'package:payroll_app/services/auth_service.dart';
+import 'package:payroll_app/services/secure_storage.dart';
 
 import 'package:payroll_app/widget/dashboard/card_item_header.dart';
 import 'package:payroll_app/widget/dashboard/card_item_main.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:shimmer/shimmer.dart';
 
-class DashboardPage extends StatelessWidget {
+class DashboardPage extends StatefulWidget {
   const DashboardPage({Key? key}) : super(key: key);
+
+  @override
+  State<DashboardPage> createState() => _DashboardPageState();
+}
+
+class _DashboardPageState extends State<DashboardPage> {
+  final SecureStorage secureStorage = SecureStorage();
+  final AuthService _authService = AuthService();
+
+  // CurrentUser? _currentUser;
+
+  Future getToken() async {
+    String token = await secureStorage.readSecureData(key: 'token');
+    return token;
+    // debugPrint('token : $token');
+  }
+
+  Future<CurrentUser?> getCurrentUser() async {
+    String token = await getToken();
+    CurrentUser? currentUser;
+    currentUser = await _authService.fetchCurrentUser(token: token);
+    return currentUser;
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    getToken();
+    getCurrentUser();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,36 +77,103 @@ class DashboardPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Wrap(
-                            direction: Axis.horizontal,
-                            spacing: 10,
-                            crossAxisAlignment: WrapCrossAlignment.center,
-                            children: [
-                              const CircleAvatar(
-                                radius: 30,
-                                backgroundImage:
-                                    AssetImage('assets/images/avatar_img.png'),
-                              ),
-                              Wrap(
-                                direction: Axis.vertical,
-                                spacing: 3,
-                                children: const [
-                                  Text(
-                                    "Alex Maximillian",
-                                    style: TextStyle(
-                                        color: Color(0XFFFFFFFF),
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    "Fullstack Developer",
-                                    style: TextStyle(
-                                        color: Color(0XFFFFFFFF), fontSize: 12),
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
+                          FutureBuilder<CurrentUser?>(
+                              future: getCurrentUser(),
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  CurrentUser? currentUser = snapshot.data;
+                                  if (currentUser != null) {
+                                    return Wrap(
+                                      direction: Axis.horizontal,
+                                      spacing: 10,
+                                      crossAxisAlignment:
+                                          WrapCrossAlignment.center,
+                                      children: [
+                                        const CircleAvatar(
+                                          radius: 30,
+                                          backgroundImage: AssetImage(
+                                              'assets/images/avatar_img.png'),
+                                        ),
+                                        Wrap(
+                                          direction: Axis.vertical,
+                                          spacing: 3,
+                                          children: [
+                                            Text(
+                                              currentUser.name,
+                                              style: TextStyle(
+                                                  color: Color(0XFFFFFFFF),
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Text(
+                                              currentUser.email,
+                                              style: TextStyle(
+                                                  color: Color(0XFFFFFFFF),
+                                                  fontSize: 12),
+                                            ),
+
+                                            // Text(token!)
+                                          ],
+                                        )
+                                      ],
+                                    );
+                                  }
+                                }
+                                return Wrap(
+                                  direction: Axis.horizontal,
+                                  spacing: 10,
+                                  crossAxisAlignment: WrapCrossAlignment.center,
+                                  children: [
+                                    Shimmer.fromColors(
+                                      baseColor: const Color(0XFFadb5bd),
+                                      highlightColor: const Color(0xFFe9ecef),
+                                      child: Container(
+                                        width: 60,
+                                        height: 60,
+                                        decoration: const BoxDecoration(
+                                            color: Color(0XFFadb5bd),
+                                            shape: BoxShape.circle),
+                                      ),
+                                    ),
+                                    Wrap(
+                                      direction: Axis.vertical,
+                                      spacing: 5,
+                                      children: [
+                                        Shimmer.fromColors(
+                                          baseColor: const Color(0XFFadb5bd),
+                                          highlightColor:
+                                              const Color(0xFFe9ecef),
+                                          child: Container(
+                                            width: 150,
+                                            height: 20,
+                                            decoration: const BoxDecoration(
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(2),
+                                              ),
+                                              color: Color(0XFFadb5bd),
+                                            ),
+                                          ),
+                                        ),
+                                        Shimmer.fromColors(
+                                          baseColor: const Color(0XFFadb5bd),
+                                          highlightColor:
+                                              const Color(0xFFe9ecef),
+                                          child: Container(
+                                            width: 150,
+                                            height: 20,
+                                            decoration: const BoxDecoration(
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(2),
+                                              ),
+                                              color: Color(0XFFadb5bd),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                );
+                              }),
                         ],
                       ),
                     ),

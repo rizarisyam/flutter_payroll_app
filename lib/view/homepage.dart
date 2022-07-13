@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:payroll_app/services/secure_storage.dart';
 import 'package:payroll_app/view/account/account_main.dart';
 import 'package:payroll_app/view/dashboard.dart';
 import 'package:payroll_app/view/employee_page.dart';
@@ -16,6 +17,23 @@ class _HomePageState extends State<HomePage> {
   var _selectedIndex = 0;
   final PageController _pageController = PageController();
 
+  final SecureStorage secureStorage = SecureStorage();
+
+  Future<String> getToken() async {
+    String token = await secureStorage.readSecureData(key: 'token');
+    return token;
+  }
+
+  Future<void> checkToken() async {
+    String token = await getToken();
+
+    if (token != null) {
+      Navigator.of(context).pushNamed('/dashboard');
+    } else {
+      Navigator.of(context).pushNamed('/login');
+    }
+  }
+
   void _onPageChanged(int index) {
     setState(() {
       _selectedIndex = index;
@@ -32,6 +50,12 @@ class _HomePageState extends State<HomePage> {
     const Inboxpage(),
     const AccountPage(),
   ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
