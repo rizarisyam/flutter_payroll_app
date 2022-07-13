@@ -17,36 +17,33 @@ class CardItemHeader extends StatelessWidget {
     return SizedBox(
       width: 140,
       height: 50,
-      child: InkWell(
-        onTap: () {},
-        child: Card(
-          color: const Color(0XFFFFFFFF),
-          margin: EdgeInsets.zero,
-          child: Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                FaIcon(
-                  iconName,
-                  size: 15,
-                  color: const Color(0XFF686868),
-                ),
-                Wrap(
-                  direction: Axis.vertical,
-                  spacing: 5,
-                  children: [
-                    Text(
-                      title,
-                      style: TextStyle(color: Colors.grey[700]),
-                    ),
-                    Text(
-                      subtitle,
-                      style: const TextStyle(fontWeight: FontWeight.w600),
-                    ),
-                  ],
-                )
-              ],
-            ),
+      child: Card(
+        color: const Color(0XFFFFFFFF),
+        margin: EdgeInsets.zero,
+        child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              FaIcon(
+                iconName,
+                size: 15,
+                color: const Color(0XFF686868),
+              ),
+              Wrap(
+                direction: Axis.vertical,
+                spacing: 5,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(color: Colors.grey[700]),
+                  ),
+                  Text(
+                    subtitle,
+                    style: const TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                ],
+              )
+            ],
           ),
         ),
       ),

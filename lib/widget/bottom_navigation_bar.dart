@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   final int currentIndex;
@@ -15,30 +14,39 @@ class CustomBottomNavigationBar extends StatelessWidget {
       currentIndex: currentIndex,
       type: BottomNavigationBarType.fixed,
       backgroundColor: const Color(0XFFFFFFFF),
+      unselectedItemColor: const Color(0xFFC2C2C2),
       selectedItemColor: const Color(0XFF699BF7),
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: FaIcon(
-            FontAwesomeIcons.house,
+          icon: ImageIcon(
+            AssetImage("assets/images/home_solid.png"),
+                    size: 28,
+               ),
+               label: "",
           ),
-          label: "",
+          // label: "",
+        // ),
+        BottomNavigationBarItem(
+          icon: ImageIcon(
+            AssetImage("assets/images/contact_solid.png"),
+                    size: 28,
+               ),
+               label: "",
         ),
         BottomNavigationBarItem(
-          icon: FaIcon(
-            FontAwesomeIcons.addressBook,
-          ),
-          label: "",
-        ),
-        BottomNavigationBarItem(
-            icon: FaIcon(
-              FontAwesomeIcons.envelope,
+            icon: ImageIcon(
+            AssetImage("assets/images/message_solid.png"),
+                    size: 22,
+               ),
+               label: "",
             ),
-            label: ""),
         BottomNavigationBarItem(
-            icon: FaIcon(
-              FontAwesomeIcons.user,
+            icon: ImageIcon(
+            AssetImage("assets/images/user_solid.png"),
+                    size: 28,
+               ),
+               label: "",
             ),
-            label: ""),
       ],
     );
   }

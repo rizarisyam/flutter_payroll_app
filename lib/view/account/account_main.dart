@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:payroll_app/view/account/info_contract.dart';
+import 'package:payroll_app/view/account/info_payroll.dart';
+import 'package:payroll_app/view/account/info_personal.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({Key? key}) : super(key: key);
@@ -70,7 +73,7 @@ class _AccountPageState extends State<AccountPage> {
                                       style: TextStyle(
                                           color: Color(0XFFFFFFFF),
                                           fontSize: 11,
-                                          letterSpacing: 1.2),
+                                          letterSpacing: 1),
                                     )
                                   ],
                                 )
@@ -105,88 +108,139 @@ class _AccountPageState extends State<AccountPage> {
                                   color: Color(0XFF3D3D3D),
                                   fontSize: 14,
                                   fontWeight: FontWeight.w600,
-                                  letterSpacing: 1.2),
+                                  letterSpacing: 0.5),
                             ),
                           ),
-                          Container(
-                            decoration: const BoxDecoration(
-                              border: Border(
-                                bottom: BorderSide(
-                                  color: Color(0XFFECECEC),
+                          GestureDetector(
+                            onTap: () => {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const InfoPersonalPage()),
+                              )
+                            },
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    color: Color(0XFFECECEC),
+                                  ),
                                 ),
                               ),
-                            ),
-                            child: ListTile(
-                              contentPadding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              leading: SvgPicture.asset(
-                                  'assets/svgs/bxs_user-circle.svg'),
-                              title: const Text(
-                                "Info Pribadi",
-                                style: TextStyle(
-                                  fontSize: 14,
+                              child: ListTile(
+                                contentPadding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                leading: SvgPicture.asset(
+                                    'assets/svgs/bxs_user-circle.svg'),
+                                title: const Text(
+                                  "Info Pribadi",
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                  ),
                                 ),
+                                trailing: IconButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const InfoPersonalPage()),
+                                      );
+                                    },
+                                    icon: const FaIcon(
+                                      FontAwesomeIcons.angleRight,
+                                      size: 16,
+                                    )),
                               ),
-                              trailing: IconButton(
-                                  onPressed: () {},
-                                  icon: const FaIcon(
-                                    FontAwesomeIcons.angleRight,
-                                    size: 16,
-                                  )),
                             ),
                           ),
-                          Container(
-                            decoration: const BoxDecoration(
-                              border: Border(
-                                bottom: BorderSide(
-                                  color: Color(0XFFECECEC),
+                          GestureDetector(
+                            onTap: () => {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const InfoContractPage()),
+                              )
+                            },
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    color: Color(0XFFECECEC),
+                                  ),
                                 ),
                               ),
-                            ),
-                            child: ListTile(
-                              contentPadding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              leading: SvgPicture.asset(
-                                  'assets/svgs/fa6-solid_file-contract.svg'),
-                              title: const Text(
-                                "Info Pekerjaan",
-                                style: TextStyle(
-                                  fontSize: 14,
+                              child: ListTile(
+                                contentPadding:
+                                    const EdgeInsets.only(left: 11, right: 10),
+                                leading: SvgPicture.asset(
+                                    'assets/svgs/fa6-solid_file-contract.svg'),
+                                title: const Text(
+                                  "Info Kontrak",
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                  ),
                                 ),
+                                trailing: IconButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const InfoContractPage()),
+                                      );
+                                    },
+                                    icon: const FaIcon(
+                                      FontAwesomeIcons.angleRight,
+                                      size: 16,
+                                    )),
                               ),
-                              trailing: IconButton(
-                                  onPressed: () {},
-                                  icon: const FaIcon(
-                                    FontAwesomeIcons.angleRight,
-                                    size: 16,
-                                  )),
                             ),
                           ),
-                          Container(
-                            decoration: const BoxDecoration(
-                              border: Border(
-                                bottom: BorderSide(
-                                  color: Color(0XFFECECEC),
+                          GestureDetector(
+                            onTap: () => {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const InfoPayrollPage()),
+                              )
+                            },
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    color: Color(0XFFECECEC),
+                                  ),
                                 ),
                               ),
-                            ),
-                            child: ListTile(
-                              contentPadding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              leading: SvgPicture.asset(
-                                  'assets/svgs/fluent_payment-20-filled.svg'),
-                              title: const Text(
-                                "Info Payroll",
-                                style: TextStyle(
-                                  fontSize: 14,
+                              child: ListTile(
+                                contentPadding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                leading: SvgPicture.asset(
+                                    'assets/svgs/fluent_payment-20-filled.svg'),
+                                title: const Text(
+                                  "Info Payroll",
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                  ),
                                 ),
+                                trailing: IconButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const InfoPayrollPage()),
+                                      );
+                                    },
+                                    icon: const FaIcon(
+                                      FontAwesomeIcons.angleRight,
+                                      size: 16,
+                                    )),
                               ),
-                              trailing: IconButton(
-                                  onPressed: () {},
-                                  icon: const FaIcon(
-                                    FontAwesomeIcons.angleRight,
-                                    size: 16,
-                                  )),
                             ),
                           ),
                           const SizedBox(height: 20),
@@ -196,15 +250,19 @@ class _AccountPageState extends State<AccountPage> {
                               const Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 10),
                                 child: Text(
-                                  "Info Profil",
+                                  "Pengaturan",
                                   style: TextStyle(
                                       color: Color(0XFF3D3D3D),
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
-                                      letterSpacing: 1.2),
+                                      letterSpacing: 0.5),
                                 ),
                               ),
-                              Container(
+                              GestureDetector(
+                                onTap: () => {
+                                  
+                                },
+                              child:Container(
                                 decoration: const BoxDecoration(
                                   border: Border(
                                     bottom: BorderSide(
@@ -218,7 +276,7 @@ class _AccountPageState extends State<AccountPage> {
                                   leading: SvgPicture.asset(
                                       'assets/svgs/bxs_lock.svg'),
                                   title: const Text(
-                                    "Info Pribadi",
+                                    "Ubah Password",
                                     style: TextStyle(
                                       fontSize: 14,
                                     ),
@@ -231,6 +289,7 @@ class _AccountPageState extends State<AccountPage> {
                                       )),
                                 ),
                               ),
+                              )
                             ],
                           ),
                         ],
@@ -244,12 +303,12 @@ class _AccountPageState extends State<AccountPage> {
                               child: ElevatedButton(
                                 style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all(
-                                    const Color(0XFFD83E3E),
+                                    const Color(0xFFCD0101),
                                   ),
                                   elevation: MaterialStateProperty.all(5),
                                 ),
                                 child: const Text(
-                                  "Ubah Password",
+                                  "Keluar Dari Akun",
                                   style: TextStyle(
                                     color: Color(0XFFFFFFFF),
                                   ),

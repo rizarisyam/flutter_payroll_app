@@ -1,6 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-
+import 'package:intl/intl.dart';
+import 'package:payroll_app/view/submission/attend_submiss.dart';
+import 'package:payroll_app/view/submission/overtime_submiss.dart';
+import 'package:payroll_app/view/submission/paidleave_submission.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:payroll_app/models/auth/current_user.dart';
 import 'package:payroll_app/services/auth_service.dart';
@@ -192,26 +195,59 @@ class _DashboardPageState extends State<DashboardPage> {
                           Wrap(
                             direction: Axis.horizontal,
                             spacing: 10,
-                            children: const [
-                              CardItemHeader(
-                                title: "pengajuan",
-                                subtitle: "Reimbursement",
-                                iconName: FontAwesomeIcons.rupiahSign,
+                            children: [
+                              InkWell(
+                                onTap: () {},
+                                child: const CardItemHeader(
+                                  title: "pengajuan",
+                                  subtitle: "Reimbursement",
+                                  iconName: FontAwesomeIcons.rupiahSign,
+                                ),
                               ),
-                              CardItemHeader(
-                                title: "pengajuan",
-                                subtitle: "Cuti",
-                                iconName: FontAwesomeIcons.calendar,
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const PaidLeaveSubmiss()),
+                                  );
+                                },
+                                child: const CardItemHeader(
+                                  title: "pengajuan",
+                                  subtitle: "Cuti",
+                                  iconName: FontAwesomeIcons.calendar,
+                                ),
                               ),
-                              CardItemHeader(
-                                title: "pengajuan",
-                                subtitle: "Absensi",
-                                iconName: FontAwesomeIcons.locationDot,
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const AttendaceSubmiss()),
+                                  );
+                                },
+                                child: const CardItemHeader(
+                                  title: "pengajuan",
+                                  subtitle: "Absensi",
+                                  iconName: FontAwesomeIcons.locationDot,
+                                ),
                               ),
-                              CardItemHeader(
-                                title: "pengajuan",
-                                subtitle: "Lembur",
-                                iconName: FontAwesomeIcons.briefcase,
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const OvertimeSubmiss()),
+                                  );
+                                },
+                                child: const CardItemHeader(
+                                  title: "pengajuan",
+                                  subtitle: "Lembur",
+                                  iconName: FontAwesomeIcons.briefcase,
+                                ),
                               ),
                             ],
                           )
@@ -234,7 +270,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     CardItemMain(
                       path: "assets/svgs/bi_calendar-date-fill.svg",
                       title: "Kalendar",
-                      pathName: '/attendance',
+                      pathName: '/menu/calendar',
                     ),
                     CardItemMain(
                       path: "assets/svgs/majesticons_note-text.svg",
@@ -244,12 +280,12 @@ class _DashboardPageState extends State<DashboardPage> {
                     CardItemMain(
                       path: "assets/svgs/fluent_clock-12-filled.svg",
                       title: "Lembur",
-                      pathName: '/attendance',
+                      pathName: '/menu/overtime',
                     ),
                     CardItemMain(
                       path: "assets/svgs/uim_calender.svg",
                       title: "Cuti",
-                      pathName: '/attendance',
+                      pathName: '/menu/leave',
                     ),
                     CardItemMain(
                       path: "assets/svgs/ant-design_file-filled.svg",
@@ -260,7 +296,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       path:
                           "assets/svgs/fluent_task-list-square-rtl-24-filled.svg",
                       title: "Daftar Absensi",
-                      pathName: '/attendance',
+                      pathName: '/attendance/list',
                     ),
                     CardItemMain(
                       path: "assets/svgs/uim_calender.svg",
@@ -271,100 +307,107 @@ class _DashboardPageState extends State<DashboardPage> {
                     CardItemMain(
                       path: "assets/svgs/flat-color-icons_bookmark.svg",
                       title: "Slip Gaji",
-                      pathName: '/attendance',
+                      pathName: '/menu/salary',
                     ),
                   ],
                 ),
               ),
             ),
-            Container(
-              color: Color(0XFFFFFFFF),
-              width: double.infinity,
-              height: size.height * 0.39,
-              child: Padding(
-                padding: const EdgeInsets.only(right: 20, left: 20, top: 20),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text(
-                          "Pengumuman",
-                          style: TextStyle(
+            Expanded(
+              child: Container(
+                color: const Color(0XFFFFFFFF),
+                width: double.infinity,
+                height: size.height,
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 20, left: 20, top: 10),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Text(
+                            "Pengumuman",
+                            style: TextStyle(
+                                color: Color(0XFF4684EB),
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            "Lihat Lainnya",
+                            style: TextStyle(
                               color: Color(0XFF4684EB),
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          "Lihat Lainnya",
-                          style: TextStyle(
-                            color: Color(0XFF4684EB),
-                            fontSize: 14,
-                          ),
-                        )
-                      ],
-                    ),
-                    Column(
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          decoration: const BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(
-                                  color: Color(0XFFE5EAF0), width: 1),
+                              fontSize: 14,
+                            ),
+                          )
+                        ],
+                      ),
+                      Column(
+                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            decoration: const BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(
+                                    color: Color(0XFFE5EAF0), width: 1),
+                              ),
+                            ),
+                            child: ListTile(
+                              contentPadding: EdgeInsets.zero,
+                              title: const Text("Besok Pulang Cepet"),
+                              trailing: Text(DateFormat("d MMMM yyyy", "id_ID")
+                                  .format(DateTime.now())),
                             ),
                           ),
-                          child: const ListTile(
-                            contentPadding: EdgeInsets.zero,
-                            title: Text("test"),
-                            trailing: Text("18 Mei 2022"),
-                          ),
-                        ),
-                        Container(
-                          decoration: const BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(
-                                  color: Color(0XFFE5EAF0), width: 1),
+                          Container(
+                            decoration: const BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(
+                                    color: Color(0XFFE5EAF0), width: 1),
+                              ),
+                            ),
+                            child: ListTile(
+                              contentPadding: EdgeInsets.zero,
+                              title: const Text("Hari ini kerja setengah hari"),
+                              trailing: Text(DateFormat("d MMMM yyyy", "id_ID")
+                                  .format(DateTime.now())),
                             ),
                           ),
-                          child: const ListTile(
-                            contentPadding: EdgeInsets.zero,
-                            title: Text("test"),
-                            trailing: Text("18 Mei 2022"),
-                          ),
-                        ),
-                        Container(
-                          decoration: const BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(
-                                  color: Color(0XFFE5EAF0), width: 1),
+                          Container(
+                            decoration: const BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(
+                                    color: Color(0XFFE5EAF0), width: 1),
+                              ),
+                            ),
+                            child: ListTile(
+                              contentPadding: EdgeInsets.zero,
+                              title:
+                                  const Text("Bulan depan gaji naik Rp. 1.000"),
+                              trailing: Text(DateFormat("d MMMM yyyy", "id_ID")
+                                  .format(DateTime.now())),
                             ),
                           ),
-                          child: const ListTile(
-                            contentPadding: EdgeInsets.zero,
-                            title: Text("test"),
-                            trailing: Text("18 Mei 2022"),
-                          ),
-                        ),
-                        Container(
-                          decoration: const BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(
-                                  color: Color(0XFFE5EAF0), width: 1),
+                          Container(
+                            decoration: const BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(
+                                    color: Color(0XFFE5EAF0), width: 1),
+                              ),
+                            ),
+                            child: ListTile(
+                              contentPadding: EdgeInsets.zero,
+                              title: const Text("Gaji dituker jadi sembako"),
+                              trailing: Text(DateFormat("d MMMM yyyy", "id_ID")
+                                  .format(DateTime.now())),
                             ),
                           ),
-                          child: const ListTile(
-                            contentPadding: EdgeInsets.zero,
-                            title: Text("test"),
-                            trailing: Text("18 Mei 2022"),
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
