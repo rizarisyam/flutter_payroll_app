@@ -3,6 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:payroll_app/models/auth/current_user.dart';
 import 'package:payroll_app/services/auth_service.dart';
+import 'package:payroll_app/view/attendance/detail_attendance.dart';
+import 'package:payroll_app/widget/button_custom.dart';
 
 class AttendancePage extends StatefulWidget {
   const AttendancePage({Key? key}) : super(key: key);
@@ -182,18 +184,25 @@ class _AttendancePageState extends State<AttendancePage> {
                           ]),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: const [
+                        children: [
                           Expanded(
                             child: Card(
-                              color: Color(0XFF4684EB),
+                              color: Color.fromARGB(255, 2, 82, 241),
                               child: Center(
                                 child: Padding(
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                       horizontal: 20, vertical: 10),
-                                  child: Text(
-                                    "Clock In",
-                                    style: TextStyle(
-                                        color: Color(0XFFFFFFFF), fontSize: 16),
+                                  child: ButtonProfile(
+                                    colour: Color.fromARGB(0, 0, 84, 152),
+                                    title: "Clock In",
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const DetailAttendance()),
+                                      );
+                                    },
                                   ),
                                 ),
                               ),
@@ -201,15 +210,22 @@ class _AttendancePageState extends State<AttendancePage> {
                           ),
                           Expanded(
                             child: Card(
-                              color: Color(0XFF4684EB),
+                              color: Color.fromARGB(255, 2, 82, 241),
                               child: Center(
                                 child: Padding(
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                       horizontal: 20, vertical: 10),
-                                  child: Text(
-                                    "Clock Out",
-                                    style: TextStyle(
-                                        color: Color(0XFFFFFFFF), fontSize: 16),
+                                  child: ButtonProfile(
+                                    colour: Color.fromARGB(0, 0, 84, 152),
+                                    title: "Clock In",
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const DetailAttendance()),
+                                      );
+                                    },
                                   ),
                                 ),
                               ),

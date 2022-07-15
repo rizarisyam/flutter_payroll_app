@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:payroll_app/view/attendance/detail_attendance.dart';
 import 'package:payroll_app/view/menu/calendar_page.dart';
 import 'package:payroll_app/view/menu/paidleave_page.dart';
 import 'package:payroll_app/view/menu/overtime_page.dart';
