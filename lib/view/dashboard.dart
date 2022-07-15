@@ -102,14 +102,14 @@ class _DashboardPageState extends State<DashboardPage> {
                                           spacing: 3,
                                           children: [
                                             Text(
-                                              currentUser.name,
-                                              style: TextStyle(
+                                              currentUser.name!,
+                                              style: const TextStyle(
                                                   color: Color(0XFFFFFFFF),
                                                   fontSize: 18,
                                                   fontWeight: FontWeight.bold),
                                             ),
                                             Text(
-                                              currentUser.email,
+                                              currentUser.email!,
                                               style: TextStyle(
                                                   color: Color(0XFFFFFFFF),
                                                   fontSize: 12),

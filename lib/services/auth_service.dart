@@ -47,8 +47,8 @@ class AuthService {
       Response response = await _dio.get('/user',
           options: Options(headers: {'Authorization': 'Bearer $token'}));
 
-      currentUser = CurrentUser.fromJson(response.data);
       debugPrint('current user : ${response.data.toString()}');
+      currentUser = CurrentUser.fromJson(response.data['data'][0]);
     } on DioError catch (e) {
       debugPrint('Error : ${e.response.toString()}');
     }
