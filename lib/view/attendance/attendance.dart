@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:payroll_app/models/auth/current_user.dart';
+import 'package:payroll_app/services/auth_service.dart';
 
 class AttendancePage extends StatefulWidget {
   const AttendancePage({Key? key}) : super(key: key);
@@ -11,6 +13,14 @@ class AttendancePage extends StatefulWidget {
 }
 
 class _AttendancePageState extends State<AttendancePage> {
+  final AuthService _authService = AuthService();
+
+  Future<CurrentUser?> getCurrentUser() async {
+    CurrentUser? currentUser;
+    currentUser = await _authService.fetchCurrentUser();
+    return currentUser;
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -108,13 +118,44 @@ class _AttendancePageState extends State<AttendancePage> {
                           ),
                         ),
                         const SizedBox(height: 20),
-                        const Text(
-                          "10:00 - 20:00",
-                          style: TextStyle(
-                              fontSize: 32,
-                              color: Color(0XFFFFFFFF),
-                              fontWeight: FontWeight.bold),
-                        ),
+                        FutureBuilder<CurrentUser?>(
+                            future: getCurrentUser(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                CurrentUser? user = snapshot.data;
+                                List<Calendar>? calendar =
+                                    user!.shift!.calendar;
+                                if (user != null) {
+                                  return Wrap(
+                                    spacing: 8,
+                                    crossAxisAlignment:
+                                        WrapCrossAlignment.center,
+                                    children: [
+                                      Text(
+                                        user.shift!.workingHourStart!,
+                                        style: const TextStyle(
+                                            fontSize: 20,
+                                            color: Color(0XFFFFFFFF),
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      const FaIcon(
+                                        FontAwesomeIcons.minus,
+                                        color: Colors.white,
+                                        size: 14,
+                                      ),
+                                      Text(
+                                        user.shift!.workingHourEnd!,
+                                        style: const TextStyle(
+                                            fontSize: 20,
+                                            color: Color(0XFFFFFFFF),
+                                            fontWeight: FontWeight.bold),
+                                      )
+                                    ],
+                                  );
+                                }
+                              }
+                              return const CircularProgressIndicator();
+                            }),
                       ],
                     ),
                   ),

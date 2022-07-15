@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:payroll_app/view/submission/attend_submiss.dart';
@@ -11,7 +10,7 @@ import 'package:payroll_app/services/secure_storage.dart';
 
 import 'package:payroll_app/widget/dashboard/card_item_header.dart';
 import 'package:payroll_app/widget/dashboard/card_item_main.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 import 'package:shimmer/shimmer.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -27,16 +26,9 @@ class _DashboardPageState extends State<DashboardPage> {
 
   // CurrentUser? _currentUser;
 
-  Future getToken() async {
-    String token = await secureStorage.readSecureData(key: 'token');
-    return token;
-    // debugPrint('token : $token');
-  }
-
   Future<CurrentUser?> getCurrentUser() async {
-    String token = await getToken();
     CurrentUser? currentUser;
-    currentUser = await _authService.fetchCurrentUser(token: token);
+    currentUser = await _authService.fetchCurrentUser();
     return currentUser;
   }
 
@@ -45,8 +37,7 @@ class _DashboardPageState extends State<DashboardPage> {
     // TODO: implement initState
     super.initState();
 
-    getToken();
-    getCurrentUser();
+    // getCurrentUser();
   }
 
   @override
@@ -110,7 +101,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                             ),
                                             Text(
                                               currentUser.email!,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   color: Color(0XFFFFFFFF),
                                                   fontSize: 12),
                                             ),

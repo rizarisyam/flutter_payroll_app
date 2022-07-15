@@ -40,8 +40,14 @@ class AuthService {
     return userlogin;
   }
 
-  Future<CurrentUser?> fetchCurrentUser({required String token}) async {
+  Future getToken() async {
+    String token = await secureStorage.readSecureData(key: 'token');
+    return token;
+  }
+
+  Future<CurrentUser?> fetchCurrentUser() async {
     CurrentUser? currentUser;
+    String token = await getToken();
     try {
       // debugPrint('token from fetchcurrentuser : $token');
       Response response = await _dio.get('/user',
