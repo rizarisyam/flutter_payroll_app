@@ -15,7 +15,7 @@ class DashboardPage extends StatelessWidget {
     Size? size = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: SafeArea(
+      body: SingleChildScrollView(
         child: Column(
           children: [
             Container(
@@ -36,7 +36,7 @@ class DashboardPage extends StatelessWidget {
                     left: 0,
                     right: 0,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -161,7 +161,7 @@ class DashboardPage extends StatelessWidget {
               child: Center(
                 child: GridView(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 4),
+                      crossAxisCount: 4,childAspectRatio: 1.6,mainAxisExtent: 85.0),
                   children: const [
                     CardItemMain(
                       path: "assets/svgs/bi_calendar-date-fill.svg",
@@ -209,13 +209,13 @@ class DashboardPage extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(
+            SizedBox(
               child: Container(
                 color: const Color(0XFFFFFFFF),
                 width: double.infinity,
-                height: size.height,
+                height: size.height * 0.43,
                 child: Padding(
-                  padding: const EdgeInsets.only(right: 20, left: 20, top: 10),
+                  padding: const EdgeInsets.only(right: 20, left: 20, top: 10, bottom: 10),
                   child: Column(
                     children: [
                       Row(

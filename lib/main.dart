@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:payroll_app/view/attendance/detail_attendance.dart';
 import 'package:payroll_app/view/menu/calendar_page.dart';
 import 'package:payroll_app/view/menu/paidleave_page.dart';
 import 'package:payroll_app/view/menu/overtime_page.dart';
@@ -55,6 +56,7 @@ class MyApp extends StatelessWidget {
           '/maps-demo': (context) => const GoogleMapsDemo(),
           '/splash-screen': (context) => const SplashScreenPage(),
           '/attendance': (context) => const AttendancePage(),
+          '/detail-attendance': (context) => const DetailAttendance(),
           '/attendance/list': (context) => const AttendanceListPage(),
           '/menu/calendar': (context) => const CalendarPage(),
           '/menu/leave': (context) => const PaidLeavePage(),
