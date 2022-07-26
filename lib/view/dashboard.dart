@@ -278,7 +278,7 @@ class DashboardPage extends StatelessWidget {
                             child: ListTile(
                               contentPadding: EdgeInsets.zero,
                               title:
-                                  const Text("Bulan depan gaji naik Rp. 1.000"),
+                                  const Text("Lorem ipsum dolor sit amet"),
                               trailing: Text(DateFormat("d MMMM yyyy", "id_ID")
                                   .format(DateTime.now())),
                             ),
@@ -292,7 +292,7 @@ class DashboardPage extends StatelessWidget {
                             ),
                             child: ListTile(
                               contentPadding: EdgeInsets.zero,
-                              title: const Text("Gaji dituker jadi sembako"),
+                              title: const Text("Kerja Jangan Mikir"),
                               trailing: Text(DateFormat("d MMMM yyyy", "id_ID")
                                   .format(DateTime.now())),
                             ),
