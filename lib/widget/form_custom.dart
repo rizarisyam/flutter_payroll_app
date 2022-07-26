@@ -1,15 +1,18 @@
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:payroll_app/widget/date-picker.dart';
 
 class FormIconCustom extends StatelessWidget {
   const FormIconCustom({
     Key? key,
     required this.label,
+    this.controller,
     this.icon,
   }) : super(key: key);
 
   final String label;
   final IconData? icon;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +22,7 @@ class FormIconCustom extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: TextFormField(
+            controller: controller,
             decoration: InputDecoration(
               icon: Icon(icon),
               enabledBorder: const UnderlineInputBorder(
@@ -206,9 +210,34 @@ class CheckboxCustom extends StatefulWidget {
 }
 
 class _CheckboxCustomState extends State<CheckboxCustom> {
+  TextEditingController? timePicker;
+  // Future showDatetimePicker() async {
+  //   // bool isChecked = false;
+  //   return showDialog<Widget>(
+  //       context: context,
+  //       builder: (BuildContext context) {
+  //         return Scaffold(
+  //           body: DateTimePicker(
+  //             controller: timePicker,
+  //             type: DateTimePickerType.time,
+  //           ),
+  //         );
+  // });
+  // }
+
+  // @override
+  // void dispose() {
+  //   // backdropNode.dispose();
+  //   myFocusNode.dispose();
+  //   super.dispose();
+  // }
+
   bool isChecked = false;
+  bool timeIsVisible = false;
+
   @override
   Widget build(BuildContext context) {
+    var myFocusNode = FocusNode();
     return Center(
       child: Column(
         children: <Widget>[
@@ -217,21 +246,34 @@ class _CheckboxCustomState extends State<CheckboxCustom> {
             contentPadding: const EdgeInsets.only(left: 8, bottom: 5),
             selected: true,
             title: Text('${widget.title}',style: const TextStyle(fontSize: 14,color: Color.fromARGB(255, 149, 149, 149)),),
-            subtitle: Padding(
-              padding: const EdgeInsets.only(right: 20),
-              child: DateTimePicker( 
-                autovalidate: true,
-                timeLabelText: "Jam",
-                type: DateTimePickerType.time,
+            subtitle: FocusScope(
+              canRequestFocus: timeIsVisible,
+              child: Padding(
+                padding: const EdgeInsets.only(right: 20),
+                child: DateTimePicker( 
+                  focusNode: myFocusNode,
+                  // timePickerEntryModeInput: ,
+                  controller: timePicker,
+                  autovalidate: true,
+                  timeLabelText: "Jam",
+                  type: DateTimePickerType.time,
+                ),
               ),
             ),
             checkColor: Colors.white,
             controlAffinity: ListTileControlAffinity.leading,
-            value: isChecked,
+            value: timeIsVisible,
             onChanged: (bool? value) {
+              debugPrint(value.toString());
               setState(() {
-                isChecked = value!;
+                timeIsVisible = value!;
               });
+              if(timeIsVisible){
+                FocusScope.of(context).requestFocus(myFocusNode);
+                  // DateTimePicker(
+                  //   type: DateTimePickerType.time,
+                  // );
+              }
             },
           ),
         ],

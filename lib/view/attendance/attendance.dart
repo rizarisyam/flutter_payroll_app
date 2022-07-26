@@ -225,7 +225,7 @@ class _AttendancePageState extends State<AttendancePage> {
                               },
                               child: const Text(
                                 'Lihat Log',
-                                style: TextStyle(color: Color(0XFFA2A6A6)),
+                                style: TextStyle(color: Color.fromARGB(255, 59, 153, 253)),
                               ),
                             ),
                           ],

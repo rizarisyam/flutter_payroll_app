@@ -41,7 +41,9 @@ class EmployeePage extends StatelessWidget {
                   child: SizedBox(
                     width: double.infinity,
                     child: ListView.builder(
-                        itemCount: 100,
+                        // scrollDirection: Axis.vertical,
+                        // shrinkWrap: true,
+                        // itemCount: 10,
                         itemBuilder: (context, index) {
                           return const EmployeeItem();
                         }),

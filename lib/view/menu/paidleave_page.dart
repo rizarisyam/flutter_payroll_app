@@ -30,7 +30,7 @@ class _PaidLeavePageState extends State<PaidLeavePage> {
         children: <Widget>[
           Container(
             height: 200,
-            child: const ProfileAppbar(
+            child: const BackToHome(
               title: "Cuti",
             ),
           ),

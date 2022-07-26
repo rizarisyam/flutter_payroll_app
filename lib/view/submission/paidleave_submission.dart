@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:payroll_app/widget/button_custom.dart';
 import 'package:payroll_app/widget/form_custom.dart';
 import 'package:payroll_app/widget/date-picker.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class PaidLeaveSubmiss extends StatefulWidget {
   const PaidLeaveSubmiss({Key? key}) : super(key: key);
@@ -14,12 +16,34 @@ class PaidLeaveSubmiss extends StatefulWidget {
 }
 
 class _PaidLeaveSubmissState extends State<PaidLeaveSubmiss> {
+  TextEditingController paidleaveController = TextEditingController();
+  String _date = DateFormat('E, d MMM yyyy').format(DateTime.now()).toString();
+
   Future showDatetimePicker() {
     return showDialog<Widget>(
         context: context,
         builder: (BuildContext context) {
-          return const CustomDatePicker();
+          return CustomDatePicker(
+              onSelectionChanged: _onSelectionChanged,
+              onSubmit: (args) {
+                debugPrint('test' + args.toString());
+                setState(() {
+                  _date;
+                });
+                paidleaveController.text = _date;
+                debugPrint('datetime ' + _date.toString());
+                Navigator.of(context).pop();
+              }
+              );
         });
+  }
+
+  void _onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
+    SchedulerBinding.instance.addPostFrameCallback((duration) {
+      setState(() {
+        _date = DateFormat('E, d MMM yyyy', 'id').format(args.value).toString();
+      });
+    });
   }
 
   @override
@@ -54,20 +78,43 @@ class _PaidLeaveSubmissState extends State<PaidLeaveSubmiss> {
                 Padding(
                   padding: const EdgeInsets.only(
                       left: 15, right: 15, bottom: 10, top: 16),
-                  child: InkWell(
-                    onTap: showDatetimePicker,
-                    child: Card(
-                      elevation: 0,
-                      margin: EdgeInsets.zero,
-                      child: ListTile(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.0),
+                  child: 
+                  Card(
+                    color: const Color.fromARGB(255, 229, 229, 229),
+                    elevation: 0,
+                    margin: EdgeInsets.zero,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 12.0, right: 24),
+                      child: TextFormField(
+                        readOnly: true,
+                        controller: paidleaveController,
+                        onTap: showDatetimePicker,
+                        keyboardType: TextInputType.none,
+                        decoration: InputDecoration(
+                          hintStyle: const TextStyle(
+                              color: Color.fromARGB(255, 119, 119, 119)),
+                          hintText: "Pilih Tanggal",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                            borderSide: const BorderSide(
+                              width: 0,
+                              style: BorderStyle.none,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                                style: BorderStyle.none, width: 0),
+                            borderRadius: BorderRadius.circular(25.0),
+                          ),
+                          icon: const FaIcon(
+                            FontAwesomeIcons.solidCalendar,
+                            color: Color.fromARGB(255, 130, 130, 130),
+                          ),
+                          suffixIcon: const Padding(
+                            padding: EdgeInsets.only(left: 40, top: 10),
+                            child: FaIcon(FontAwesomeIcons.caretDown),
+                          ),
                         ),
-                        tileColor: const Color.fromARGB(255, 229, 229, 229),
-                        title: Text(DateFormat("MMMM yyyy", "id_ID")
-                              .format(DateTime.now())),
-                        leading: const FaIcon(FontAwesomeIcons.solidCalendar),
-                        trailing: const FaIcon(FontAwesomeIcons.caretDown),
                       ),
                     ),
                   ),

@@ -8,12 +8,12 @@ import 'package:intl/intl.dart';
 import 'package:payroll_app/widget/date-picker.dart';
 
 class OvertimePage extends StatefulWidget {
-  const OvertimePage({Key? key}) : super(key: key);
-
+  const OvertimePage({Key? key, this.name, this.dateformat}) : super(key: key);
+  final String? name;
+  final String? dateformat;
   @override
   State<OvertimePage> createState() => _OvertimePageState();
 }
-
 class _OvertimePageState extends State<OvertimePage> {
   Future showDatetimePicker() {
     return showDialog<Widget>(
@@ -30,7 +30,7 @@ class _OvertimePageState extends State<OvertimePage> {
         children: <Widget>[
           Container(
             height: 200,
-            child: const ProfileAppbar(
+            child: const BackToHome(
               title: "Lembur",
             ),
           ),
@@ -49,13 +49,27 @@ class _OvertimePageState extends State<OvertimePage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      width: double.infinity,
-                      child: const Text(
-                        'Tidak ada Lembur yang diajukan',
-                        style: TextStyle(fontSize: 20),
+                    ListTile(
+                      title: Align(
+                        // alignment: Alignment.topLeft,
+                        child: Text(
+                          '${widget.dateformat}',
+                          style: TextStyle(fontSize: 16),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      subtitle: Text(
+                        '${widget.name}',
+                        style: TextStyle(fontSize: 24, color: Colors.black),
                         textAlign: TextAlign.center,
                       ),
+                      // width: double.infinity,
+                      // child: 
+                      // Text(
+                      //   '${widget.name}',
+                      //   style: TextStyle(fontSize: 20),
+                      //   textAlign: TextAlign.center,
+                      // ),
                     )
                   ],
                 ),
